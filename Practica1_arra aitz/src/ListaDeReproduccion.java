@@ -22,7 +22,14 @@ public class ListaDeReproduccion implements ListModel<String> {
 	public ListaDeReproduccion() {
 		ficherosLista = new ArrayList<>();
 	}
-	
+	public void intercambio(int pos1,int pos2) {
+		if (pos1 <= ficherosLista.size() && pos2 <= ficherosLista.size()){
+			File fich=ficherosLista.get(pos1);
+			File dos= ficherosLista.get(pos2);
+			ficherosLista.add(pos2, fich);
+			ficherosLista.add(pos1, dos);
+		}
+	}
 	/** Devuelve uno de los ficheros de la lista
 	 * @param posi	Posición del fichero en la lista (de 0 a size()-1)
 	 * @return	Devuelve el fichero en esa posición
@@ -30,6 +37,7 @@ public class ListaDeReproduccion implements ListModel<String> {
 	 */
 	public File getFic( int posi ) throws IndexOutOfBoundsException {
 		return ficherosLista.get( posi );
+		
 	}	
 
 	/** Añade a la lista de reproducción todos los ficheros que haya en la 
