@@ -24,10 +24,14 @@ public class ListaDeReproduccion implements ListModel<String> {
 	}
 	public void intercambio(int pos1,int pos2) {
 		if (pos1 <= ficherosLista.size() && pos2 <= ficherosLista.size()){
-			File fich=ficherosLista.get(pos1);
-			File dos= ficherosLista.get(pos2);
-			ficherosLista.add(pos2, fich);
-			ficherosLista.add(pos1, dos);
+			if(pos1>0 && pos2>0) {
+				
+				File fich=ficherosLista.get(pos1);
+				File dos= ficherosLista.get(pos2);
+				ficherosLista.add(pos2, fich);
+				ficherosLista.add(pos1, dos);
+			}
+			
 		}
 	}
 	/** Devuelve uno de los ficheros de la lista
