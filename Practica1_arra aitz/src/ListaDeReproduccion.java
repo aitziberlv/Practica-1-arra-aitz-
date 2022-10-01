@@ -28,11 +28,27 @@ public class ListaDeReproduccion implements ListModel<String> {
 				
 				File fich=ficherosLista.get(pos1);
 				File dos= ficherosLista.get(pos2);
+				ficherosLista.remove(pos2);
 				ficherosLista.add(pos2, fich);
+				ficherosLista.remove(pos1);
 				ficherosLista.add(pos1, dos);
 			}
 			
 		}
+	}
+	public int size() {
+		return ficherosLista.size();
+		
+	}
+	public void add(File f) {
+		ficherosLista.add(f);
+	}
+	public void removeFic(int pos) {
+		ficherosLista.remove(pos);
+	}
+	
+	public void clear() {
+		ficherosLista.clear();
 	}
 	/** Devuelve uno de los ficheros de la lista
 	 * @param posi	Posición del fichero en la lista (de 0 a size()-1)
