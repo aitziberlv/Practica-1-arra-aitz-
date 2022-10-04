@@ -1,17 +1,14 @@
 package ud.prog3.pr0;
 
-import static org.junit.Assert.fail;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.*;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
-class ListaDeReproduccionTest {
+public class ListaDeReproduccionTest {
 
 	@Test
-	void test() {
+	public void test() {
 		fail("Not yet implemented");
-		
-		
 	}
 
 }
