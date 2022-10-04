@@ -170,4 +170,16 @@ public class ListaDeReproduccion implements ListModel<String> {
 			ldl.intervalAdded( new ListDataEvent(this, ListDataEvent.INTERVAL_ADDED, posi, posi ));
 		}
 	}
+	
+	/** Añade a la lista de reproducción todos los ficheros que haya en la carpeta indicada, que
+	* cumplan el filtro indicado. Si hay cualquier error, la lista de reproducción queda solo con
+	* los ficheros que hayan podido ser cargados de forma correcta.
+	* @param carpetaFicheros Path de la carpeta donde buscar los ficheros
+	* @param filtroFicheros Filtro del formato que tienen que tener los nombres de los ficheros
+	* para ser cargados. String con cualquier letra o dígito. Si tiene un
+	* asterisco hace referencia a cualquier conjunto de letras o dígitos.
+	* Por ejemplo p*.* hace referencia a cualquier fichero de nombre que
+	* empiece por p y tenga cualquier extensión.
+	* @return Número de ficheros que han sido añadidos a la lista
+	*/
 }
