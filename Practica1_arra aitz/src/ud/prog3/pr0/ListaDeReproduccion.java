@@ -3,6 +3,8 @@ package ud.prog3.pr0;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Collections;
+
 import javax.swing.ListModel;
 import javax.swing.event.ListDataEvent;
 import javax.swing.event.ListDataListener;
@@ -24,17 +26,19 @@ public class ListaDeReproduccion implements ListModel<String> {
 		ficherosLista = new ArrayList<>();
 	}
 	public void intercambio(int pos1,int pos2) {
-		if (pos1 <= ficherosLista.size() && pos2 <= ficherosLista.size()){
-			if(pos1>0 && pos2>0) {
+		
+		if (pos1 <= ficherosLista.size() && pos2 <= ficherosLista.size() && pos1>0 && pos2>0){	
+			
+//				File temp = ficherosLista.get(pos1);
+//				ficherosLista.set(pos1, ficherosLista.get(pos2));
+//				ficherosLista.set(pos2, temp);
 				
 				File fich=ficherosLista.get(pos1);
 				File dos= ficherosLista.get(pos2);
 				ficherosLista.remove(pos2);
 				ficherosLista.add(pos2, fich);
 				ficherosLista.remove(pos1);
-				ficherosLista.add(pos1, dos);
-			}
-			
+				ficherosLista.add(pos1, dos);			
 		}
 	}
 	public int size() {
