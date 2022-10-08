@@ -174,6 +174,19 @@ public class ListaDeReproduccion implements ListModel<String> {
 		for (ListDataListener ldl : misEscuchadores) {
 			ldl.intervalAdded( new ListDataEvent(this, ListDataEvent.INTERVAL_ADDED, posi, posi ));
 		}
+		
+		
+	
+	}
+	/** Selecciona un fichero aleatorio de la lista de reproducción.
+	* @return true si la selección es correcta, false si hay error y no se puede seleccionar
+	*/
+	public boolean irARandom() {
+		File f =ficherosLista.get(getFicSeleccionado());
+		if (f==this.getFic(ficheroEnCurso)){
+			return true;
+		}
+		return false;
 	}
 	
 	/** Añade a la lista de reproducción todos los ficheros que haya en la carpeta indicada, que
