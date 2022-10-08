@@ -170,7 +170,7 @@ public class ListaDeReproduccion implements ListModel<String> {
 	
 	// Llamar a este método cuando se añada un elemento a la lista
 	// (Utilizado para avisar a los escuchadores de cambio de datos de la lista)
-	private void avisarAnyadido( int posi ) {
+	void avisarAnyadido( int posi ) {
 		for (ListDataListener ldl : misEscuchadores) {
 			ldl.intervalAdded( new ListDataEvent(this, ListDataEvent.INTERVAL_ADDED, posi, posi ));
 		}

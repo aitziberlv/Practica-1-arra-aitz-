@@ -86,6 +86,8 @@ public class VideoPlayer extends JFrame {
 				// ficheros = ...
 				listaRepVideos.add( path, ficheros );
 				lCanciones.repaint();
+				//llamar al metodo avisar añadido cuando añadamos algo
+				listaRepVideos.avisarAnyadido(1);
 			}
 		});
 		bAtras.addActionListener( new ActionListener() {
