@@ -68,4 +68,13 @@ public class ListaDeReproduccionTest {
 	public void sizeTest() {
 		assertEquals(2, lr2.size());
 	}
+	
+	@Test
+	public void sizeTest() {
+		assertEquals(2, lr2.size());
+	}
+	@Test
+	public void isRandom() {
+		assertEquals(lr1.getFic(0), lr1.getFicSeleccionado());
+	}
 }
