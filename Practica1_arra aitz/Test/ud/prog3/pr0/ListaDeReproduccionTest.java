@@ -70,6 +70,17 @@ public class ListaDeReproduccionTest {
 	public void sizeTest() {
 		assertEquals(2, lr2.size());
 	}
+	
+	@Test 
+	public void addCarpeta() {
+		String carpetaTest = "test/res/";
+		String filtroTest = "*Pentatonix*.mp4";
+		ListaDeReproduccion lr = new ListaDeReproduccion();
+		lr.add( carpetaTest, filtroTest );
+		//fail( "Método sin acabar" );
+		assertEquals(3,lr.size());
+		}
+	
 	@Test
 	public void isRandom() {
 		Random aleatorio = new Random();

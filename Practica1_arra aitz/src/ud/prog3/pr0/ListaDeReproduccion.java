@@ -3,8 +3,11 @@ package ud.prog3.pr0;
 
 import java.io.File;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Random;
+import java.util.logging.FileHandler;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.util.regex.Pattern;
 
 import javax.swing.ListModel;
 import javax.swing.event.ListDataEvent;
@@ -21,6 +24,18 @@ public class ListaDeReproduccion implements ListModel<String> {
 	ArrayList<File> ficherosLista;     // ficheros de la lista de reproducción
 	int ficheroEnCurso = -1;           // Fichero seleccionado (-1 si no hay ninguno seleccionado)
 
+	private static Logger logger = Logger.getLogger( ListaDeReproduccion.class.getName() );
+
+	private static final boolean ANYADIR_A_FIC_LOG = false; // poner true para no sobreescribir
+	static {
+	try {
+	logger.addHandler( new FileHandler(
+	 ListaDeReproduccion.class.getName()+".log.xml", ANYADIR_A_FIC_LOG ));
+	} catch (Exception e) {
+	logger.log( Level.SEVERE, "Error en creación fichero log" );
+	}
+	}
+	
 	/** Constructor de lista de reproducción, crea una lista vacía
 	 */
 	public ListaDeReproduccion() {
@@ -48,6 +63,7 @@ public class ListaDeReproduccion implements ListModel<String> {
 	}
 	public void add(File f) {
 		ficherosLista.add(f);
+		avisarAnyadido(ficherosLista.size()-1);
 	}
 	public void removeFic(int pos) {
 		ficherosLista.remove(pos);
@@ -79,14 +95,31 @@ public class ListaDeReproduccion implements ListModel<String> {
 	 * 							que empiece por p y tenga cualquier extensión.
 	 * @return	Número de ficheros que han sido añadidos a la lista
 	 */
+	
 	public int add(String carpetaFicheros, String filtroFicheros) {
 		// TODO: Codificar este método de acuerdo a la práctica (pasos 3 y sucesivos)
+		
+		logger.log( Level.INFO, "Añadiendo ficheros con filtro " + filtroFicheros );
+		
 		filtroFicheros = filtroFicheros.replaceAll( "\\.", "\\\\." );  // Pone el símbolo de la expresión regular \. donde figure un .
-		return 0;
+		filtroFicheros = filtroFicheros.replaceAll( "\\*", "\\.*" ); 
+		
+		logger.log( Level.INFO, "Añadidos los ficheros con filtro " + filtroFicheros );
+		
+		File fInic = new File(carpetaFicheros);
+		if (fInic.isDirectory()) {
+			for( File f : fInic.listFiles() ) {
+				logger.log( Level.FINE, "Procesando fichero " + f.getName() );
+		// TODO: Comprobar que f.getName() cumple el patrón y añadirlo a la lista
+				if(Pattern.matches(filtroFicheros, f.getName())) {
+					this.add(f);
+				}
+			}
+		}
+			
+		return this.size();
 	}
 	
-	
-	//
 	// Métodos de selección
 	//
 	
@@ -206,15 +239,5 @@ public class ListaDeReproduccion implements ListModel<String> {
 		
 	}
 	
-	/** Añade a la lista de reproducción todos los ficheros que haya en la carpeta indicada, que
-	* cumplan el filtro indicado. Si hay cualquier error, la lista de reproducción queda solo con
-	* los ficheros que hayan podido ser cargados de forma correcta.
-	* @param carpetaFicheros Path de la carpeta donde buscar los ficheros
-	* @param filtroFicheros Filtro del formato que tienen que tener los nombres de los ficheros
-	* para ser cargados. String con cualquier letra o dígito. Si tiene un
-	* asterisco hace referencia a cualquier conjunto de letras o dígitos.
-	* Por ejemplo p*.* hace referencia a cualquier fichero de nombre que
-	* empiece por p y tenga cualquier extensión.
-	* @return Número de ficheros que han sido añadidos a la lista
-	*/
+	
 }
