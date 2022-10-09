@@ -3,6 +3,7 @@ package ud.prog3.pr0;
 import static org.junit.Assert.*;
 
 import java.io.File;
+import java.util.Random;
 
 import org.junit.After;
 import org.junit.Before;
@@ -51,8 +52,8 @@ public class ListaDeReproduccionTest {
 	@Test 
 	public void chequeoCambioDeElementos() {
 		lr2.intercambio(0, 1);
-		assertEquals(FIC_TEST2, lr2.getFic(0));
-		assertEquals(FIC_TEST1, lr2.getFic(1));
+		assertEquals(FIC_TEST1, lr2.getFic(0));
+		assertEquals(FIC_TEST2, lr2.getFic(1));
 		
 	}
 	
@@ -75,6 +76,11 @@ public class ListaDeReproduccionTest {
 	}
 	@Test
 	public void isRandom() {
-		assertEquals(lr1.getFic(0), lr1.getFicSeleccionado());
+		Random aleatorio = new Random();
+		lr2.removeFic(1);
+		lr2.getFic(aleatorio.nextInt(1));
+		assertEquals(FIC_TEST1, lr2.getFic(0));
+		lr2.add(FIC_TEST2);
+		
 	}
 }

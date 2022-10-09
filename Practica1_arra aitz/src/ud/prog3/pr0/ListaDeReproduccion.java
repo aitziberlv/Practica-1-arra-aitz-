@@ -4,6 +4,7 @@ package ud.prog3.pr0;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Random;
 
 import javax.swing.ListModel;
 import javax.swing.event.ListDataEvent;
@@ -182,11 +183,20 @@ public class ListaDeReproduccion implements ListModel<String> {
 	* @return true si la selección es correcta, false si hay error y no se puede seleccionar
 	*/
 	public boolean irARandom() {
-		File f =ficherosLista.get(getFicSeleccionado());
-		if (f==this.getFic(ficheroEnCurso)){
-			return true;
+		Random aleatorio = new Random();
+		File f =ficherosLista.get(aleatorio.nextInt(ficherosLista.size()));
+		ficheroEnCurso = 0;  // Inicia
+		while  (ficheroEnCurso>=ficherosLista.size()) {
+			if(ficherosLista.get(ficheroEnCurso)==f)
+				return true;
+			ficheroEnCurso+= 1;
+			
 		}
+		ficheroEnCurso = -1;  // Si no se encuentra, no hay selección
+			
+		
 		return false;
+		
 	}
 	
 	/** Añade a la lista de reproducción todos los ficheros que haya en la carpeta indicada, que
