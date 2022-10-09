@@ -65,10 +65,6 @@ public class ListaDeReproduccionTest {
 		lr1.getFic(0);
 	}
 	
-	@Test
-	public void sizeTest() {
-		assertEquals(2, lr2.size());
-	}
 	
 	@Test
 	public void sizeTest() {

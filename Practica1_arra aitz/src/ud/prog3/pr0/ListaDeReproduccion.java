@@ -116,7 +116,10 @@ public class ListaDeReproduccion implements ListModel<String> {
 	/** Seleciona el anterior fichero de la lista de reproducción
 	 * @return	true si la selección es correcta, false si hay error y no se puede seleccionar
 	 */
-	public boolean irAAnterior() {
+	public boolean irAAnterior(boolean b) {
+		if (b){
+			return irARandom();
+		}
 		if (ficheroEnCurso>=0) ficheroEnCurso--;
 		if (ficheroEnCurso==-1) {  // Si no se encuentra, no hay selección
 			return false;  // Y devuelve error
@@ -127,7 +130,10 @@ public class ListaDeReproduccion implements ListModel<String> {
 	/** Seleciona el siguiente fichero de la lista de reproducción
 	 * @return	true si la selección es correcta, false si hay error y no se puede seleccionar
 	 */
-	public boolean irASiguiente() {
+	public boolean irASiguiente(boolean b ) {
+		if (b) {
+			return irARandom();
+		}
 		ficheroEnCurso++;
 		if (ficheroEnCurso>=ficherosLista.size()) {
 			ficheroEnCurso = -1;  // Si no se encuentra, no hay selección
@@ -188,6 +194,7 @@ public class ListaDeReproduccion implements ListModel<String> {
 		ficheroEnCurso = 0;  // Inicia
 		while  (ficheroEnCurso>=ficherosLista.size()) {
 			if(ficherosLista.get(ficheroEnCurso)==f)
+				
 				return true;
 			ficheroEnCurso+= 1;
 			

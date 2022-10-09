@@ -94,7 +94,11 @@ public class VideoPlayer extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				paraVideo();
-				listaRepVideos.irAAnterior();
+				boolean b=false;
+				if (cbAleatorio.isSelected()) {
+					b=true;
+				}
+				listaRepVideos.irAAnterior(b);
 				lanzaVideo();
 			}
 		});
@@ -102,7 +106,11 @@ public class VideoPlayer extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				paraVideo();
-				listaRepVideos.irASiguiente();
+				boolean b=false;
+				if (cbAleatorio.isSelected()) {
+					b=true;
+				}
+				listaRepVideos.irASiguiente(b);
 				lanzaVideo();
 			}
 		});
@@ -140,12 +148,20 @@ public class VideoPlayer extends JFrame {
 			new MediaPlayerEventAdapter() {
 				@Override
 				public void finished(MediaPlayer mediaPlayer) {
-					listaRepVideos.irASiguiente();
+					boolean b=false;
+					if (cbAleatorio.isSelected()) {
+						b=true;
+					}
+					listaRepVideos.irASiguiente(b);
 					lanzaVideo();
 				}
 				@Override
 				public void error(MediaPlayer mediaPlayer) {
-					listaRepVideos.irASiguiente();
+					boolean b=false;
+					if (cbAleatorio.isSelected()) {
+						b=true;
+					}
+					listaRepVideos.irASiguiente(b);
 					lanzaVideo();
 					lCanciones.repaint();
 				}
